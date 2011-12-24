@@ -5,6 +5,7 @@ Gem::Specification.new do |s|
 	s.name = "paperclip-storage-http"
 	s.platform = Gem::Platform::RUBY
 	s.homepage = "https://github.com/eviljojo22/paperclip-storage-http"
+	s.description = "HTTP storage support for paperclip."
 	s.require_paths = ["lib"]
 	s.summary = "HTTP storage support for paperclip"
 	s.version = "1.0"

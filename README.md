@@ -1,7 +1,7 @@
 Paperclip storage HTTP
 ======================
 
-Http storage support for paperclip.
+HTTP storage support for paperclip.
 
 Requirements
 ------------
