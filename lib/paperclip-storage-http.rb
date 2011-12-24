@@ -1,4 +1,4 @@
-module Paperclip		
+module Paperclip
   module Storage
     module Http
 
@@ -13,9 +13,13 @@ module Paperclip
 					
 					@http_url_upload = @options[:http_url_upload]
 					@http_url_remove = @options[:http_url_remove]
-					@http_params_upload = @options[:http_params_upload] || []
-					@http_params_remove = @options[:http_params_remove] || []
+					@http_params_upload = @options[:http_params_upload] || {}
+					@http_params_remove = @options[:http_params_remove] || {}
 					
+					@http_param_file_upload = @options[:http_param_file_upload] .to_s || 'file'
+					@http_param_path_upload = @options[:http_param_path_upload].to_s || 'path'
+					@http_param_path_remove = @options[:http_param_path_remove].to_s || 'path'
+
 					@options[:path] ||= ":attachment/:id/:style/:basename.:extension"
 				end
 			end
@@ -39,7 +43,7 @@ module Paperclip
 
 			def flush_writes
 				@queued_for_write.each do |style, file|
-					options = [Curl::PostField.file('file', file.path), Curl::PostField.content('path', path(style))]
+					options = [Curl::PostField.file(@http_param_file_upload, file.path), Curl::PostField.content(@http_param_path_upload, path(style))]
 					for key,value in @http_params_upload
 						options << Curl::PostField.content(key.to_s, value.to_s)
 					end
@@ -51,7 +55,7 @@ module Paperclip
 			
 			def flush_deletes
 				@queued_for_delete.each do |path|
-					options = [Curl::PostField.content('path', path)]
+					options = [Curl::PostField.content(@http_param_path_remove, path)]
 					for key,value in @http_params_remove
 						options << Curl::PostField.content(key, value)
 					end
