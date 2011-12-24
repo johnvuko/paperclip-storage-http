@@ -7,13 +7,16 @@ module Paperclip
 				require 'curb'
 				
 				base.instance_eval do
+					raise "http_url_upload must be set" if !@options[:http_url_upload]
+					raise "http_url_remove must be set" if !@options[:http_url_remove]
+					raise "url must be set" if !@options[:url]
+					
 					@http_url_upload = @options[:http_url_upload]
 					@http_url_remove = @options[:http_url_remove]
 					@http_params_upload = @options[:http_params_upload] || []
 					@http_params_remove = @options[:http_params_remove] || []
 					
 					@options[:path] ||= ":attachment/:id/:style/:basename.:extension"
-					@options[:url] ||= "http://localhost/#{URI.encode(@options[:path]).gsub(/&/, '%26')}"
 				end
 			end
 						
