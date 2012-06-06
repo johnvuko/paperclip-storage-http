@@ -7,9 +7,9 @@ module Paperclip
 				require 'curb'
 				
 				base.instance_eval do
-					raise "http_url_upload must be set" if !@options[:http_url_upload]
-					raise "http_url_remove must be set" if !@options[:http_url_remove]
-					raise "url must be set" if !@options[:url]
+					raise "missing required :http_url_upload option" if !@options[:http_url_upload]
+					raise "missing required :http_url_remove option" if !@options[:http_url_remove]
+					raise "missing required :url option" if !@options[:url]
 					
 					@http_url_upload = @options[:http_url_upload]
 					@http_url_remove = @options[:http_url_remove]
