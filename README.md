@@ -16,7 +16,7 @@ Installation
 
 Include the gem in your Gemfile:
 
-    gem 'paperclip-storage-http', :git => 'https://github.com/eviljojo22/paperclip-storage-http'
+    gem 'paperclip-storage-http', :git => 'https://github.com/jonathantribouharet/paperclip-storage-http'
 
 
 Usage
